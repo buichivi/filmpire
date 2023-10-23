@@ -1,35 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { CssBaseline } from "@mui/material";
+import { Route, Routes } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+import { Actors, MovieInfomation, Movies, Profile, Navbar } from "./components";
+import useStyle from './components/style'
+const App = () => {
+    const classes = useStyle()
+    return (
+        <div className={classes.root}>
+            <CssBaseline />
+            <Navbar />
+            <main className={classes.content}>
+                <div className={classes.toolbar}></div>
+                <Routes>
+                    <Route path="/" element={<Movies />} />
+                    <Route path="/movies/:id" element={<MovieInfomation />} />
+                    <Route path="/actors/:id" element={<Actors />} />
+                    <Route path="/profile/:id" element={<Profile />} />
+                </Routes>
+            </main>
+        </div>
+    );
 }
 
-export default App
+export default App;
